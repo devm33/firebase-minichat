@@ -1,14 +1,25 @@
-# Mini Chat
+# Firebase Minichat
 
-Adapted from google's ../codelab.
+A minimal Firebase chat example. Adapted from [google's codelab.]
+(https://codelabs.developers.google.com/codelabs/firebase-web)
 
-Deployed at <https://chat-client-4c5eb.firebaseapp.com>
+Deployed at <https://devm33.github.io/firebase-minichat>
 
 ## 1. Create a Firebase project
 
-See <https://codelabs.developers.google.com/codelabs/firebase-web/#3>
+At <https://console.firebase.google.com> sign-up and then click on CREATE NEW PROJECT.
 
-Create an `index.html` file and save the script tag generated to it.
+![CREATE NEW PROJECT](img/create_new_project_btn.png)
+
+In the Firebase Console, in the Overview click the Add Firebase to your web app button.
+
+![Add Firebase Web App](img/add_firebase_webapp.png)
+
+Copy the generated code snippet:
+
+![Firebase html/js code snippet](img/firebase_js_init.png)
+
+Create an `index.html` file and paste the generated code in it.
 
 ## 2. Change Firebase database
 
@@ -26,12 +37,12 @@ Change `"auth != null"` to `true` for both read and write:
 }
 ```
 
-Note, this give anyone read and write access to your database.
+Note, this gives anyone read and write access to your database.
 
 ## 3. Layout HTML for Chat App
 
-Add at the top of your `index.html` somewhere for the messages to go and the
-form to input them:
+Above the Firebase code snippet in your `index.html` add somewhere for the
+messages to be displayed and the form to input them:
 
 ```html
 <!DOCTYPE html>
@@ -42,17 +53,16 @@ form to input them:
     <button type="submit">Send</button>
   </form>
 </div>
-```
 
-Then there should be the code copied from your firebase project:
-
-```html
 <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
 <script>
+  // Initialize Firebase
   ...
+</script>
 ```
 
-Finally make sure at the end of your html page you include your javascript file:
+Then, include your javascript file at the end of `index.html`. It's important this
+goes after the Firebase code snippet since your code will use Firebase.
 
 ```html
 <script src="main.js"></script>
@@ -159,4 +169,26 @@ Chat.prototype.saveMessage = function(e) {
 
 Open up index.html in one or more tabs and try it out.
 
-![Screen shot of chat working](screenshot.png)
+![Screen shot of chat working](img/screenshot.png)
+
+### 9. Deploy to GitHub Pages
+
+Create a new github repo: <github.com/new>
+
+Clone your repo and add your `index.html` and `main.js` files to it:
+
+```
+git clone git@github.com:username/chat-project.git
+mv index.html main.js chat-project
+cd chat-project
+git add .
+git commit -m "Adding Firebase chat app"
+git push -u origin master
+```
+
+Then create a `gh-pages` branch to deploy your page on GitHub Pages:
+
+```
+git checkout -b gh-pages
+git push origin
+```
